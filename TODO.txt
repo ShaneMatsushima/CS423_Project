@@ -1,0 +1,11 @@
+===SEQUENCING===
+align sequence
+analyze areas of similarity
+analyze distant but related sequences
+
+
+===MODELING===
+take in sequence or fasta (preferably) for prediction
+predict model
+display model 
+highlight aa conserved and families
