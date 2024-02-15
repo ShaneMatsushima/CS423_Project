@@ -38,7 +38,7 @@ def cs_body() -> None:
     st.divider()
     
     st.subheader("How to Predict")
-    st.write(" Using ______, the prediction page allows users to input a sequence or fasta file and predict the "+
+    st.write(" Using AlphaFold, the prediction page allows users to input a sequence or fasta file and predict the "+
              "3D structure of the protein. Once the protein is predicted, it will save as a pdb file and the pdb file "+
              "will be rendered on the screen to visually see the 3D model.")
     
