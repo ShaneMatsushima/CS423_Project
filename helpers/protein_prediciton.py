@@ -5,7 +5,7 @@ Helper file to help predict and produce pdb files to be rendered.
 This is to ensure seperation between gui and functionality for easier testing. 
 
 Created: 2/12/2024
-Author: Shane Matssuhima, Ian Thompson, Austen Furatani
+Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 '''
 import biolib as bl
 import os

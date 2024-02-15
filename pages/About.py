@@ -4,7 +4,7 @@
 The about page is for information regarding running and functionality of the app. 
 
 Created: 2/12/2024
-Author: Shane Matssuhima, Ian Thompson, Austen Furatani
+Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 '''
 import streamlit as st
 

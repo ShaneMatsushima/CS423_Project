@@ -4,7 +4,7 @@
 The prediction page is where users will go to predict renderings of protein sequences. 
 
 Created: 2/12/2024
-Author: Shane Matssuhima, Ian Thompson, Austen Furatani
+Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 '''
 
 import streamlit as st

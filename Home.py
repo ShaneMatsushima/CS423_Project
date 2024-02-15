@@ -9,7 +9,7 @@ streamlit run Home.py
 NOTE: app pages are created by a .py file in the pages directory
 
 Created: 2/12/2024
-Author: Shane Matssuhima, Ian Thompson, Austen Furatani
+Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 '''
 
 import streamlit as st
@@ -30,7 +30,7 @@ def cs_sidebar()-> None:
 # main body of application  is placed in this function
 def cs_body() -> None:
     st.title("Sequence and Predict")
-    st.caption("Created By: Shane Matsushima")
+    st.caption("Created By: Shane Matsushima, Ian Thompson, and Austen Furutani")
     st.caption("Under Guidance of Dr.VanDeGrift and Dr.Hutcheson")
     st.divider()
 
