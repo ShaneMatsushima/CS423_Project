@@ -1,3 +1,12 @@
+'''
+---App for Bio Informatics Research w/ Dr.Hutcheson---
+
+The sequencing page is where users will go to align and analyze sequences of data. 
+
+Created: 2/12/2024
+Author: Shane Matssuhima, Ian Thompson, Austen Furatani
+'''
+
 import streamlit as st
 
 # Page Setup for app

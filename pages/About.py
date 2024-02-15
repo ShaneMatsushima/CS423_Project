@@ -1,3 +1,11 @@
+'''
+---App for Bio Informatics Research w/ Dr.Hutcheson---
+
+The about page is for information regarding running and functionality of the app. 
+
+Created: 2/12/2024
+Author: Shane Matssuhima, Ian Thompson, Austen Furatani
+'''
 import streamlit as st
 
 # Page Setup for app
