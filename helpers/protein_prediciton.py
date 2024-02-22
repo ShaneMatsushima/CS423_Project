@@ -11,20 +11,25 @@ import biolib as bl
 import os
 
 '''
-Input: filePath, savePath
+Input: filePath, saveDir
 Output: path to saved pdb file
 Summary: this function will predict the protein structure of a sequence and save it as 
         as pdp file to model
 '''
-def predict(filePath: str, savePath: str) -> str:
+def predictFasta(filePath: str, saveDir: str) -> str:
         alphafold = bl.load('AlphaFold/alphafold')
 
         arguments = '--fasta_paths ' + filePath
 
         result = alphafold.cli(args=arguments)
 
+        #TODO add way to get name from file in filePath
+        savePath = saveDir + "someFileName.pdb"
+
         result.save_file(savePath)
 
         #TODO check if file was saved properly
         if not os.path.isfile(savePath):
                 ...
+        
+        return savePath

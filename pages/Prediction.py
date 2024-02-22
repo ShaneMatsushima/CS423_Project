@@ -9,6 +9,7 @@ Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 
 import streamlit as st
 import py3Dmol as mdl
+from helpers.protein_prediciton import predictFasta
 
 # Page Setup for app
 st.set_page_config(
@@ -19,6 +20,7 @@ st.set_page_config(
 
 PREDICT_FLAG = False # global flag to keep track of if a prediction has been made or not
 SAVED_PDB = None # use as global variable on page to keep track of pdb file path
+TEMP_PATH = "..\\tmp"
 
 # sidebar widgets and texts are placed here
 def cs_sidebar()-> None:
@@ -30,23 +32,23 @@ def cs_sidebar()-> None:
 
     file = st.sidebar.file_uploader("Upload Fasta File Here")
 
-    #TODO check if a file or text was used (if none report issue)
-
-    #TODO check to make sure a sequence is usable 
+    
 
     #TODO implement functional button to predict outcome and display prediction ot body
-    clicked = st.sidebar.button(":green[Start Predicting]")
-
-    if clicked:
-        PREDICT_FLAG = True
-        if file == None and seq == None:
+    
+    if st.sidebar.button(":green[Start Predicting]"):
+        if file == None and len(seq) == 0:
             st.sidebar.error("No File or sequence could be found to predict structure")
-        if file != None:
-            #TODO add function that predicts reading seq
-            ...
-        elif seq != None:
-            #TODO add function that predicts reading from fasta file
-            ...
+            PREDICT_FLAG = False
+        elif file != None:
+            #TODO add function that predicts reading fasta file
+            PREDICT_FLAG = True
+            SAVED_PDB = predictFasta(file, TEMP_PATH)
+        elif len(seq) != 0:
+            #TODO add function that predicts reading from seq
+            PREDICT_FLAG = True
+            #TODO check to make sure a sequence is usable 
+            
         
 
     
