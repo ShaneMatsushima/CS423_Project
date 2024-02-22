@@ -1,0 +1,12 @@
+Table entries:
+F	F	F	F	F	F	F	F	F	F	
+F	L	L	L	D	L	L	L	L	L	
+F	L	D	L	L	L	L	L	L	D	
+F	L	T	D	L	L	L	L	L	L	
+F	L	T	T	L	L	L	L	L	D	
+F	D	L	T	L	D	L	L	L	L	
+F	T	L	T	L	T	D	L	L	L	
+F	T	L	T	L	T	T	L	D	L	
+F	T	L	T	D	L	T	L	T	L	
+F	T	D	L	T	L	T	L	T	D	
+F	T	T	L	T	L	T	L	T	T	
