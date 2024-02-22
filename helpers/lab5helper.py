@@ -100,7 +100,7 @@ def globalAlignmentScore(s1, s2):
 
 
     # find optimal alignment
-    align(directions, s1, s2, "alignment.txt")
+    align(directions, s1, s2, "alignment_files\\alignment.txt")
 
     # return optimal score (lower right-hand cell in table]
     return costs[NUM_ROWS-1][NUM_COLS-1]
