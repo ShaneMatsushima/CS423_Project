@@ -52,53 +52,7 @@ def convertFileToSequence(filename):
          return -1  # so other functions can check
     return sequence
 
-#######################################################
-# generateRandomDNA
-# creates string of given seqLength, using the GC content provided
-# writes string to outputFilename
-# similar to function from earlier lab
-#######################################################
-def generateRandomDNA(seqLength, outputFilename, GC):
-    dna = generateRandomString(seqLength, GC)
 
-    index = 0
-    dnaLength = len(dna)
-    with open(outputFilename, 'w') as out:
-        out.write("> random DNA with GC content of " + str(GC) + "\n")
-        while(index < dnaLength):
-            out.write(dna[index:index+60])
-            out.write("\n")
-            index = index + 60
-    return
-
-#######################################################
-# generateRandomString
-# creates string of given seqLength, using the GC content provided
-# returns the string
-# similar to function from earlier lab
-#######################################################
-def generateRandomString(seqLength, GC):
-    if(GC < 0 or GC > 1):
-        print("GC content needs to be between 0 and 1. No DNA written to output file\n")
-        return ""
-    AT = 1 - GC
-    dna = ""
-    for i in range(0, seqLength):
-        randNumGC = random.random() # generates value between [0.0, 1.0) use for choosing GC vs AT
-        randNumCoin = random.random()  # use for 50/50 choice
-        if(randNumGC < GC):
-            # generate 50/50 split between G and C and append char to dna
-            if(randNumCoin < .50):
-                dna = dna + "C"
-            else:
-                dna = dna + "G"
-        else:
-            # generate 50/50 split between A and T and append char to dna
-            if(randNumCoin < .50):
-                dna = dna + "A"
-            else:
-                dna = dna + "T"
-    return dna
 
 
 
@@ -127,33 +81,23 @@ def globalAlignmentScore(s1, s2):
     # complete this part of the function
     # implement dynamic programming algorithm for global alignment here
     # fill in entries in costs table and directions table
-    lst = []
-    costs[0][0] = 0
     for i in range(1, NUM_ROWS):
-        costs[i][0] = GAP*i
-        directions[i][0] = "L"
+         costs[i][0] = GAP * i
     for j in range(1, NUM_COLS):
-        costs[0][j] = GAP*j
-        directions[0][j] = "T"
+         costs[0][j] = GAP * j
     for i in range(1, NUM_ROWS):
-        for j in range(1, NUM_COLS):
-            
-            if s1[j-1] == s2[i-1]:
-                lst = [costs[i][j-1]+GAP, costs[i-1][j]+GAP, costs[i-1][j-1]+MATCH]
-            else:
-                lst = [costs[i][j-1]+GAP, costs[i-1][j]+GAP, costs[i-1][j-1]+MISMATCH]
-            costs[i][j] = max(lst)
-            if lst[0] == max(lst):
-                directions[i][j] = "L"
-            elif lst[1] == max(lst):
-                directions[i][j] = "T"
-            else:
-                directions[i][j] = "D"
+         for j in range(1, NUM_COLS):
+              if (s1[j-1] == s2[i-1]):
+                    lst = [costs[i][j-1] + GAP, costs[i-1][j] + GAP, costs[i-1][j-1] + MATCH]
+              else:
+                    lst = [costs[i][j-1] + GAP, costs[i-1][j] + GAP, costs[i-1][j-1] + MISMATCH]
+               
+              costs[i][j] = max(lst)
+              match lst.index(max(lst)):
+                   case 0: directions[i][j] = 'L'
+                   case 1: directions[i][j] = 'T'
+                   case 2: directions[i][j] = 'D'
 
-    # Print out table (only useful for small tables - used for debugging)
-    # Comment out when you are satisfied that the algorithm is working
-#     printTable(costs, "costs.txt")
-#     printTable(directions, "directions.txt")
 
     # find optimal alignment
     align(directions, s1, s2, "alignment.txt")
