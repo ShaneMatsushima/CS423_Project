@@ -1,4 +1,5 @@
 ===SEQUENCING===
+Should be for Amino Acids instead of DNA (20 vs 4)
 align sequence
 analyze areas of similarity
 analyze distant but related sequences

@@ -30,6 +30,7 @@ def predictFasta(filePath: str, saveDir: str) -> str:
 
         #TODO check if file was saved properly
         if not os.path.isfile(savePath):
-                ...
+                print("Error saving prediction")
+                return None
         
         return savePath
