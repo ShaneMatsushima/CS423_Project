@@ -9,6 +9,11 @@ Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 
 import streamlit as st
 import py3Dmol as mdl
+
+import tempfile
+import os
+
+
 from helpers.protein_prediciton import predictFasta
 
 # Page Setup for app
@@ -31,8 +36,13 @@ def cs_sidebar()-> None:
     seq = st.sidebar.text_area("Sequence to predict")
 
     file = st.sidebar.file_uploader("Upload Fasta File Here")
-
     
+    if file:
+        temp_dir = tempfile.mkdtemp()
+        path = os.path.join(temp_dir, file.name)
+        with open(path, "wb") as f:
+                f.write(file.getvalue())
+
 
     #TODO implement functional button to predict outcome and display prediction ot body
     
@@ -43,7 +53,7 @@ def cs_sidebar()-> None:
         elif file != None:
             #TODO add function that predicts reading fasta file
             PREDICT_FLAG = True
-            SAVED_PDB = predictFasta(file, TEMP_PATH)
+            SAVED_PDB = predictFasta(path, temp_dir)
         elif len(seq) != 0:
             #TODO add function that predicts reading from seq
             PREDICT_FLAG = True

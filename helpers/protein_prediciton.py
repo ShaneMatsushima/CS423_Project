@@ -17,17 +17,18 @@ Summary: this function will predict the protein structure of a sequence and save
         as pdp file to model
 '''
 def predictFasta(filePath: str, saveDir: str) -> str:
-        alphafold = bl.load('AlphaFold/alphafold')
+        alphafold = bl.load('AlphaFold/alphafold_gpu')
 
-        arguments = '--fasta_paths ' + filePath
-
+        print(f"UPLOADED FILE {filePath}")
+        arguments = "--fasta_paths " + filePath
+        print(arguments)
         result = alphafold.cli(args=arguments)
-
+        print(result)
         #TODO add way to get name from file in filePath
         savePath = saveDir + "someFileName.pdb"
 
         result.save_file(savePath)
-
+        
         #TODO check if file was saved properly
         if not os.path.isfile(savePath):
                 ...
