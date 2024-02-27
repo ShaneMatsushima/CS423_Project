@@ -2,7 +2,7 @@
 align sequence
 analyze areas of similarity
 analyze distant but related sequences
-
+change email to generic email to use
 
 ===MODELING===
 take in sequence or fasta (preferably) for prediction
