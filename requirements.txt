@@ -1,3 +1,5 @@
 streamlit
 py3Dmol
 pybiolib
+pandas
+io
