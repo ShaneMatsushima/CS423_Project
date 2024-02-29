@@ -36,13 +36,14 @@ st.set_page_config(
 def cs_sidebar()-> None:
     st.sidebar.header("Sequencing")
     file = st.sidebar.file_uploader("Upload JSON dict for gi_to_seq Here")
-    gi_dict = loadDict(file)
+    if file:
+        gi_dict = loadDict(file)
 
-    selected = st.sidebar.multiselect("Select GI to get Sequence", gi_dict.keys(), default=None)
+        selected = st.sidebar.multiselect("Select GI to get Sequence", gi_dict.keys(), default=None)
 
-    for key in selected:
-        selected_seq.append(proteinRaw(gi_dict[key], key))
-    
+        for key in selected:
+            selected_seq.append(proteinRaw(gi_dict[key], key))
+        
     #TODO do something with grabbed or selected keys
     
 
@@ -54,7 +55,7 @@ def cs_body() -> None:
             result = read("blastp -query {} -db nr".format(s.get_sequence()))
             st.write(f"BlastP Data result:\n {result}")
 
-            
+
 # main function to run 
 def main() -> None:
     cs_sidebar()
