@@ -58,7 +58,7 @@ def cs_sidebar()-> None:
         
 
     
-
+#TODO add progress bar for predicting and loading model
 # main body of application  is placed in this function
 def cs_body() -> None:
     st.title("Predicting Protein Structures")

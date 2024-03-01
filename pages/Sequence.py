@@ -46,7 +46,7 @@ def cs_sidebar()-> None:
         
     #TODO do something with grabbed or selected keys
     
-
+#TODO add progress bar to show  that data is loading
 # main body of application  is placed in this function
 def cs_body() -> None:
     if selected_seq != None:
