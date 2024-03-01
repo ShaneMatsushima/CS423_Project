@@ -8,6 +8,22 @@ Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 '''
 
 import streamlit as st
+from Bio.SearchIO import read
+from helpers.sequencing import loadDict
+
+class proteinRaw:
+    def __init__(self, s:str, gi:str):
+        self.gi = gi
+        self.sequence = s
+
+    def get_gi(self):
+        return self.gi
+    
+    def get_seq(self):
+        return self.sequence
+
+selected_seq = []
+
 
 # Page Setup for app
 st.set_page_config(
@@ -19,13 +35,28 @@ st.set_page_config(
 # sidebar widgets and texts are placed here
 def cs_sidebar()-> None:
     st.sidebar.header("Sequencing")
-    
+    file = st.sidebar.file_uploader("Upload JSON dict for gi_to_seq Here")
+    if file:
+        gi_dict = loadDict(file)
 
+        selected = st.sidebar.multiselect("Select GI to get Sequence", gi_dict.keys(), default=None)
+
+        for key in selected:
+            selected_seq.append(proteinRaw(gi_dict[key], key))
+        
+    #TODO do something with grabbed or selected keys
+    
+#TODO add progress bar to show  that data is loading
 # main body of application  is placed in this function
 def cs_body() -> None:
-    ...
+    if selected_seq != None:
+        for s in selected_seq:
+            st.write(f"Protein Sequence: {s.get_sequence()}")
+            result = read("blastp -query {} -db nr".format(s.get_sequence()))
+            st.write(f"BlastP Data result:\n {result}")
 
-# main function to run app
+
+# main function to run 
 def main() -> None:
     cs_sidebar()
     cs_body()
