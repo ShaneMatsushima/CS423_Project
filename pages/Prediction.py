@@ -24,6 +24,7 @@ st.set_page_config(
 PREDICT_FLAG = False # global flag to keep track of if a prediction has been made or not
 SAVED_PDB = None # use as global variable on page to keep track of pdb file path
 TMP_PATH = "\\tmp"
+
 # sidebar widgets and texts are placed here
 def cs_sidebar()-> None:
     st.sidebar.header("Predicting")
