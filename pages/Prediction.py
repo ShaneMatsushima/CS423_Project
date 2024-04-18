@@ -15,6 +15,9 @@ import os
 
 
 from helpers.protein_prediciton import predictFasta
+from helpers.sequencing import checkProteinSeq, seqToFasta
+
+TMP_FASTA = "..\\helpers\\tmp.fasta"
 
 # Page Setup for app
 st.set_page_config(
@@ -25,8 +28,7 @@ st.set_page_config(
 
 PREDICT_FLAG = False # global flag to keep track of if a prediction has been made or not
 SAVED_PDB = None # use as global variable on page to keep track of pdb file path
-TEMP_PATH = "..\\tmp"
-
+TMP_PATH = "\\tmp"
 # sidebar widgets and texts are placed here
 def cs_sidebar()-> None:
     st.sidebar.header("Predicting")
@@ -53,16 +55,20 @@ def cs_sidebar()-> None:
         elif file != None:
             #TODO add function that predicts reading fasta file
             PREDICT_FLAG = True
-            SAVED_PDB = predictFasta(path, temp_dir)
+            SAVED_PDB = predictFasta(file, TMP_PATH)
         elif len(seq) != 0:
             #TODO add function that predicts reading from seq
             PREDICT_FLAG = True
             #TODO check to make sure a sequence is usable 
+
+        if checkProteinSeq(seq):
+            tmp = seqToFasta(seq)
+            SAVED_PDB = predictFasta(tmp, TMP_PATH)
             
         
 
     
-
+#TODO add progress bar for predicting and loading model
 # main body of application  is placed in this function
 def cs_body() -> None:
     st.title("Predicting Protein Structures")
