@@ -11,10 +11,6 @@ import json
 import os
 #TODO write sequencing functions for raw data -> output: information of sequence
 
-def loadDict(dictPath:str) -> dict:
-    with open(dictPath, 'r') as file:
-        return json.load(file)
-
 def seqToFasta(seq:str)->str:
     
     output_file = "helpers\\tmp.fasta" # tmp for running alphafold since it likes fasta files
