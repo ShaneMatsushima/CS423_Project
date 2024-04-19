@@ -48,6 +48,8 @@ def cs_sidebar()-> None:
     for file in files:
         temp_dir = tempfile.mkdtemp()
         path = os.path.join(temp_dir, file.name)
+        with open(path, "wb") as f:
+                f.write(file.getvalue())
         PDB_LIST.append(path)
         DISPLAY = True
 
@@ -58,6 +60,7 @@ def cs_body() -> None:
     global DISPLAY, NEW, PDB_LIST
     st.title("Predicting Protein Structures")
     if DISPLAY:
+        
         for pdb in PDB_LIST:
             html = displayStruct(pdb)
             components.html(html, height = 600)
