@@ -1,5 +1,6 @@
 streamlit
 py3Dmol
 pybiolib
+openpyxl
 pandas
 io
