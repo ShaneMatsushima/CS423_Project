@@ -60,8 +60,8 @@ def cs_body() -> None:
     global DISPLAY, NEW, PDB_LIST
     st.title("Predicting Protein Structures")
     if DISPLAY:
-        
         for pdb in PDB_LIST:
+            st.image('./pages/images/legend.png', caption='How confident the prediction is')
             html = displayStruct(pdb)
             components.html(html, height = 600)
         
