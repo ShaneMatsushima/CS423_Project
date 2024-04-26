@@ -1,13 +1,12 @@
 ===SEQUENCING===
-Blastp selected sequences
-align sequence
 analyze areas of similarity
 analyze distant but related sequences
-add loading bar to show progress of blastp
 
 ===MODELING===
-take in sequence or fasta (preferably) for prediction
-predict model
-display model 
 highlight aa conserved and families
 add loading bar to show progress of prediction and rendering
+
+===VIDEO===
+- Purpose of software
+- step by step (splice waiting time)
+- web scrapping script example 

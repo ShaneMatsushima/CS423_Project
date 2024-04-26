@@ -9,7 +9,10 @@ Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 
 import streamlit as st
 from Bio.SearchIO import read
+from Bio.Blast import NCBIWWW
 import json 
+import time
+import threading
 
 class proteinRaw:
     def __init__(self, s:str, gi:str):
@@ -24,6 +27,7 @@ class proteinRaw:
 
 selected_seq = []
 
+flag = False
 
 # Page Setup for app
 st.set_page_config(
@@ -43,19 +47,19 @@ def cs_sidebar()-> None:
 
         for key in selected:
             selected_seq.append(proteinRaw(gi_dict[key], key))
-        
-    #TODO do something with grabbed or selected keys
-    
+
+
 #TODO add progress bar to show  that data is loading
 # main body of application  is placed in this function
 def cs_body() -> None:
     if selected_seq != None:
         for s in selected_seq:
-            temp_seq = s.get_seq().lower()
+            temp_seq = s.get_seq().upper()
             print(temp_seq)
             st.write(f"Protein Sequence: {temp_seq}")
-            result = read("blastp -query" + temp_seq + " -db nr")
-            st.write(f"BlastP Data result:\n {result}")
+            with st.spinner("Performing BlastP on Sequence"):
+                result_handle = NCBIWWW.qblast('blastp', 'nr', sequence=temp_seq, format_type='Text')
+            st.success(f"BlastP Data result:\n {result_handle.read()}")
 
 
 # main function to run 
