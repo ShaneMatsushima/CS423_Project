@@ -47,7 +47,7 @@ def saveJSON(jsonFile:str, data: dict)->None:
 
 if __name__ == '__main__':
     # file and sheet names for parsing 
-    file = "C:\\Users\\proge\\Dev\\spring24\\biotech\\Uncharacterized SFLD data.xlsx"
+    file = "C:\\Users\\proge\\Dev\\spring24\\biotech\\Uncharacterized SFLD data.xlsx" #TODO fix this so its relative path or user input
     sheet = 'Sheet1'
 
     # grabs and parses important data to a parsed dataframe

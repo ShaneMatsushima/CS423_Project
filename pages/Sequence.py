@@ -8,11 +8,8 @@ Author: Shane Matssuhima, Ian Thompson, Austen Furutani
 '''
 
 import streamlit as st
-from Bio.SearchIO import read
 from Bio.Blast import NCBIWWW
 import json 
-import time
-import threading
 
 class proteinRaw:
     def __init__(self, s:str, gi:str):
@@ -36,6 +33,7 @@ st.set_page_config(
     page_icon="🧬",
 )
 
+#TODO add dropdown for database input for blastp
 # sidebar widgets and texts are placed here
 def cs_sidebar()-> None:
     st.sidebar.header("Sequencing")
@@ -49,17 +47,21 @@ def cs_sidebar()-> None:
             selected_seq.append(proteinRaw(gi_dict[key], key))
 
 
-#TODO add progress bar to show  that data is loading
 # main body of application  is placed in this function
 def cs_body() -> None:
+    # loop through all selected GI's and display their sequence alignments and analysis
     if selected_seq != None:
         for s in selected_seq:
             temp_seq = s.get_seq().upper()
-            print(temp_seq)
             st.write(f"Protein Sequence: {temp_seq}")
-            with st.spinner("Performing BlastP on Sequence"):
+            
+            with st.spinner("Performing Blastp on Sequence"):
                 result_handle = NCBIWWW.qblast('blastp', 'nr', sequence=temp_seq, format_type='Text')
-            st.success(f"BlastP Data result:\n {result_handle.read()}")
+
+            if result_handle != None:
+                st.success(f"Blastp Data result:\n {result_handle.read()}")
+            else:
+                st.error('Unable to perform Blastp')
 
 
 # main function to run 
